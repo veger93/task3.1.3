@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> For User </title>
+</head>
+<body>
+
+<br><br>
+
+<h1>User Page</h1>
+<div>
+    <p>ID: <span th:text="${user.id}"></span></p>
+    <p>Username: <span th:text="${user.username}"></span></p>
+    <p>Age: <span th:text="${user.age}"></span></p>
+    <p>Role: <span th:each="role : ${user.roles}" th:text="${role}"></span></p>
+</div>
+<div>
+    <input type="button" value="Logout"
+           onclick="window.location.href='/logout'"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> For Admin </title>
+</head>
+<body>
+
+<br><br>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Age</th>
+        <th>Roles</th>
+        <th>Operations</th>
+    </tr>
+    <tr th:each="user : ${allUsers}">
+        <td th:text="${user.id}">User Id</td>
+        <td th:text="${user.username}">User name</td>
+        <td th:text="${user.age}">User age</td>
+        <td>
+            <span th:each="role : ${user.roles}" th:text="${role.toString() + ' '}"></span>
+        </td>
+        <td>
+            <form th:action="@{/admin/updateUser}" method="get">
+                <input type="hidden" th:name="userId" th:value="${user.id}" />
+                <button type="submit">Update</button>
+            </form>
+            <form th:action="@{/admin/deleteUser}" method="post">
+                <input type="hidden" th:name="userId"  th:value="${user.id}"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+
+</table>
+<div>
+    <input type="button" value="Add"
+           onclick="window.location.href='/admin/addNewUser'"/>
+</div>
+<div>
+    <input type="button" value="Logout"
+           onclick="window.location.href='/logout'"/>
+</div>
+</body>
+</html>
